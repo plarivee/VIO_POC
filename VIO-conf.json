@@ -1,0 +1,104 @@
+{
+	"configureNetworking": {
+		"networkings": [
+			{
+				"dhcp": false,
+				"portGroup": "dp_api",
+				"dns1": "8.8.8.8",
+				"name": "dp_api",
+				"dns2": null,
+				"type": null,
+				"gateway": "198.27.109.222",
+				"ipBlocks": [
+					{
+						"beginIp": "API_IP_START",
+						"endIp": "API_IP_END"
+					}
+				],
+				"netmask": "255.255.255.224"
+			},
+			{
+				"dhcp": false,
+				"portGroup": "dp_vio_mgmt",
+				"dns1": "8.8.8.8",
+				"name": "dp_vio_mgmt",
+				"dns2": null,
+				"type": null,
+				"gateway": "172.16.15.1",
+				"ipBlocks": [
+					{
+						"beginIp": "172.16.15.120",
+						"endIp": "172.16.15.140"
+					}
+				],
+				"netmask": "255.255.255.0"
+			}
+		]
+	},
+	"setupOpenstackAdminUser": {
+		"admin_user": "admin",
+		"admin_tenant_name": "admin",
+		"admin_password": null
+	},
+	"configureNeutronNetworking": {
+		"dvs_default_name": "ds_vrack",
+		"networkings": [],
+		"neutron_backend": "dvs"
+	},
+	"networkConfig": {
+		"REPL_NETWORK": [
+			"dp_vio_mgmt"
+		],
+		"MGT_NETWORK": [
+			"dp_vio_mgmt"
+		],
+		"METADATA_NETWORK": [
+			"dp_vio_mgmt"
+		],
+		"EXTERNAL_NETWORK": [
+			"dp_api"
+		],
+		"DATA_NETWORK": [
+			"ds_vrack"
+		]
+	},
+	"configureLoadBalancer": {
+		"public_vip": "API_IP",
+		"public_hostname": "api.vio.poc"
+	},
+	"addGlanceDatastores": {
+		"glance_datastores": "larivee:datastore1 (1):100"
+	},
+	"configureKeystone": {
+		"keystone_backend": "sql"
+	},
+	"configureSyslogServer": {
+		"syslog_server": "elk.vio.poc",
+		"syslog_server_protocol": "tcp",
+		"syslog_server_port": "5140"
+	},
+	"addNovaCluster": {
+		"nova_cluster": "Compute01"
+	},
+	"reviewDeploymentProcess": {
+		"deployment_name": "VIO",
+		"availability_zone": "nova",
+		"vcenter_password": null,
+		"useMgmtVcAsComputeVc": true,
+		"vcenter_user": "administrator@vio.poc",
+		"vcenter_ip": "172.16.15.10",
+		"deployment_type": "SINGLEVM"
+	},
+	"configureCeilometer": {
+		"enable": false
+	},
+	"addNovaDatastores": {
+		"nova_datastore": "vsanDatastore (1)"
+	},
+	"selectADestination": {
+		"vcClusterName": "mgmt"
+	},
+	"reviewManagementClusterConfiguration": {
+		"plan": null
+	}
+}
